@@ -23,17 +23,19 @@
 
 			<!-- Logo -->
 			<div class="col-xs-8">
-				<h1>Сервіс Обліку Студентів</h1>
+				<h1>{% block logo %}Сервіс Обліку Студентів{% endblock logo %}</h1>
 			</div>
 
 			<!-- Groups Selector -->
 			<div class="col-xs-4" id="group-selector">
+				{% block group_menu %}
 				<strong>Група:</strong>
 				<select>
 					<option value="">Усі Студенти</option>
 					<option value="">МтМ - 21, Подоба Віталій (No 254)</option>
 					<option value="">МтМ - 22, Корост Андрій (No 2123)</option>
 				</select>
+				{% endblock group_menu %}
 			</div>
 		</div>
 		<!-- End Header -->
@@ -67,7 +69,7 @@
 		<!-- Star Footer -->
 		<div class="row" id="footer">
 			<div class="col-xs-12">
-				&copy; 2014 Сервіс Обліку Студентів
+				{% block footer %}&copy; 2014 Сервіс Обліку Студентів{% endblock footer %}
 			</div>
 		</div>
 		<!-- End Footer -->
