@@ -1,13 +1,11 @@
-"""
-Django settings for studentsdb project.
+from django.conf import global_settings
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+"django.core.context_processors.request",
+"studentsdb.context_processors.students_proc",
+)
 
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
-"""
-
+PORTAL_URL = 'http://localhost:8000'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
