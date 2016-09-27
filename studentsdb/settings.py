@@ -1,4 +1,5 @@
 from django.conf import global_settings
+from db import DATABASES
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 "django.core.context_processors.request",
@@ -55,12 +56,9 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '..', 'db.sqlite3'),
-    }
-}
+# We moved DATABASES variable to db.py module which added to .gitignore
+# so we don't keep mysql passwords in repository
+from .db import DATABASES
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
