@@ -71,3 +71,13 @@ span.change{
 }
 
 
+/* Forn Styles */
+textarea,
+select,
+input {
+	max-width: 300px;
+}
+
+.btn-primary {
+	max-width: 100px;
+}
