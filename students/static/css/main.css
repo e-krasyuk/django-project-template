@@ -78,6 +78,10 @@ input {
 	max-width: 300px;
 }
 
-.btn-primary {
+.form-group .btn-primary {
 	max-width: 100px;
+}
+
+ul.messages {
+	list-style-type: none;
 }

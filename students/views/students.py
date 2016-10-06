@@ -4,8 +4,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect 
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 from datetime import datetime
+from django.contrib import messages
+from PIL import Image
 
 from ..models import Student, Group
 
@@ -92,7 +93,15 @@ def students_add(request):
 
 			photo = request.FILES.get('photo')
 			if photo:
-				data['photo'] = photo
+				try:
+					image = Image.open(photo)
+				except Exception:
+					errors['photo'] = u'Файл не є зображенням або пошкоджений'
+				else:
+					if photo.size > 2 * 1024 * 1024:
+						errors['photo'] = u'Розмір файлу має бути менше 2Мб'
+					else:
+						data['photo'] = photo
 
 			if not errors:
 				#save student
@@ -100,9 +109,10 @@ def students_add(request):
 				student.save()
 
 				#redirect user to students list
-				return HttpResponseRedirect(u'%s?status_message=Студента успішно додано!'  
-					% reverse('home'))
-
+				return HttpResponseRedirect(
+					#u'%s?status_message=Студента %s успішно додано!' % (reverse('home'), student))
+					u'%s?%s' % (reverse('home'), messages.add_message(request, messages.SUCCESS,
+						u'Студент {0} {1} був успішно доданий!'.format(first_name, last_name))))
 			else:
 				#render form with errors and previous user input
 				return render(request, 'students/students_add.html', 
@@ -110,8 +120,10 @@ def students_add(request):
 					 'errors': errors})
 		elif request.POST.get('cancel_button') is not None:
 				#redirect to home page on cancel button
-				return HttpResponseRedirect(u'%s?status_message=Додавання студента скасовано!'
-					% reverse('home'))
+				return HttpResponseRedirect(
+					#u'%s?status_message=Додавання студента скасовано!' % reverse('home'))
+					u'%s?%s' % (reverse('home'), messages.add_message(request, messages.INFO, 
+						u'Додавання студента скасовано!')))
 	else:
 		#initial form render
 		return render(request, 'students/students_add.html', 

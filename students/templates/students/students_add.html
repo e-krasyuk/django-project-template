@@ -6,8 +6,6 @@
 
 {% block title %}Додати Студенти{% endblock title %}
 
-{% block content %}
-
 {% block status_message %}
 	{% if errors %}
 	<div class="alert alert-warning" role="alert">
@@ -15,6 +13,8 @@
 	</div>
 	{% endif %}
 {% endblock status_message %}
+
+{% block content %}
 
 <form action="{% url 'students_add' %}" method="post" enctype="multipart/form-data"
 role="form" class="form-horizontal">
