@@ -1,5 +1,6 @@
 from django.conf import global_settings
 from db import DATABASES
+from passwords import gmail_pass
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 "django.core.context_processors.request",
@@ -83,13 +84,13 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 
-#variables for sendin email(gmail.com)
+#variables for sending email
 ADMIN_EMAIL = 'admin@studentsdb.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'evgeniykrasyuk@gmail.com' 
-EMAIL_HOST_PASSWORD = '1111'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_HOST_PASSWORD = gmail_pass.password
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -6,11 +6,24 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.views.generic.edit import FormView
 
 from studentsdb.settings import ADMIN_EMAIL
 
 class ContactForm(forms.Form):
+	from_email = forms.EmailField(
+		label=u'Ваша Email Адреса')
 
+	subject = forms.CharField(
+		label=u'Заголовок листа',
+		max_length=128)
+
+	message = forms.CharField(
+		label=u'Текст повідомлення',
+		max_length=2560,
+		widget=forms.Textarea)
+
+'''
 	def __init__(self, *args, **kwargs):
 		#call original initializator
 		super(ContactForm, self).__init__(*args, **kwargs)
@@ -43,6 +56,7 @@ class ContactForm(forms.Form):
 		label=u'Текст повідомлення',
 		max_length=2560,
 		widget=forms.Textarea)
+'''
 
 def contact_admin(request):
 	#check if form was posted
@@ -60,7 +74,7 @@ def contact_admin(request):
 			try:
 				send_mail(subject, message, from_email, [ADMIN_EMAIL])
 			except Exception:
-				message = u'Під час відправки виникла помилка. Спробуйте скористатись даною формою пізніше'
+				message = u'Під час відправки виникла помилка. Спробуйте скористатись даною формою пізніше.'
 			else:
 				message = u'Повідомлення успішно надіслане!'
 
