@@ -82,6 +82,6 @@ input {
 	max-width: 100px;
 }
 
-ul.messages {
+div.alert > ul {
 	list-style-type: none;
 }

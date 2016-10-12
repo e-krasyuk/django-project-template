@@ -1,6 +1,6 @@
 from django.conf import global_settings
 from db import DATABASES
-from passwords import gmail_pass
+from gmail_pass import password
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 "django.core.context_processors.request",
@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'contact_form',
     'students',
 )
 
@@ -89,7 +90,7 @@ ADMIN_EMAIL = 'admin@studentsdb.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'evgeniykrasyuk@gmail.com' 
-EMAIL_HOST_PASSWORD = gmail_pass.password
+EMAIL_HOST_PASSWORD = password
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
