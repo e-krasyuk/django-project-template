@@ -1,6 +1,8 @@
 {% extends "students/base.html" %}
 
 {% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
 
 {% block meta_title %}Додати Студента{% endblock meta_title %}
 
@@ -15,7 +17,7 @@
 {% endblock status_message %}
 
 {% block content %}
-
+<!--
 <form action="{% url 'students_add' %}" method="post" enctype="multipart/form-data"
 role="form" class="form-horizontal">
 	{% csrf_token %}
@@ -88,6 +90,11 @@ role="form" class="form-horizontal">
 		</div>
 	</div>
 </form>
+-->
+
+{% crispy form %}
 
 {% endblock content %}
-	
+
+
+

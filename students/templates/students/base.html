@@ -60,11 +60,13 @@
 
 				{% block status_message %}
 				{% if messages %}
-				<ul class="messages">
-					{% for msg in messages %}
-					<li><div class="alert alert-{{msg.level_tag}}" role="alert">{{ msg.message }}</div></li>
-					{% endfor %}
-				</ul>
+				<div class="alert alert-warning" role="alert">
+					<ul>
+						{% for message in messages %}
+						<li>{{ message }}</li>
+						{% endfor %}
+					</ul>
+				</div>
 				{% endif %}
 				{% endblock %}
 
