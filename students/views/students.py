@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from PIL import Image
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from django.views.generic import UpdateView, DeleteView, CreateView
 
 from crispy_forms.helper import FormHelper
@@ -219,6 +219,14 @@ class StudentUpdateForm(ModelForm):
 			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
 			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
 		))
+
+	def clean_student_group(self):
+		groups = Group.objects.filter(leader=self.instance)
+		if len(groups) > 0 and self.cleaned_data['student_group'] != groups[0]:
+			raise ValidationError(u'Студент є старостою іншої групи.', code='invalid')
+
+		return self.cleaned_data['student_group']
+
 
 class StudentUpdateView(UpdateView):
 	model = Student
