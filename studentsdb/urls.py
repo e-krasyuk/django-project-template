@@ -3,7 +3,7 @@ from django.contrib import admin
 from .settings import MEDIA_ROOT, DEBUG
 from students.views.students import StudentUpdateView, StudentDeleteView, StudentCreateView
 from students.views.contact_admin import ContactView
-from students.views.groups import GroupDeleteView
+from students.views.groups import GroupDeleteView, GroupUpdateView, GroupCreateView
 
 urlpatterns = patterns('',
 	# Students urls
@@ -17,8 +17,10 @@ urlpatterns = patterns('',
 
 	#Group urls
 	url(r'^groups/$', 'students.views.groups.groups_list', name='groups'),
-	url(r'^groups/add/$', 'students.views.groups.groups_add', name='groups_add'),
-	url(r'^groups/(?P<gid>\d+)/edit/$', 'students.views.groups.groups_edit', name='groups_edit'),
+	#url(r'^groups/add/$', 'students.views.groups.groups_add', name='groups_add'),
+	url(r'^groups/add/$', GroupCreateView.as_view(), name='groups_add'),
+	#url(r'^groups/(?P<gid>\d+)/edit/$', 'students.views.groups.groups_edit', name='groups_edit'),
+	url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='groups_edit'),
 	#url(r'^groups/(?P<gid>\d+)/delete/$', 'students.views.groups.groups_delete', name='groups_delete'),
 	url(r'^groups/(?P<pk>\d+)/delete/$', GroupDeleteView.as_view(), name='groups_delete'),
 

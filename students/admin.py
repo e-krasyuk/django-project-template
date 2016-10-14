@@ -30,7 +30,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 	def view_on_site(self, obj):
 		return reverse('students_edit', kwargs={'pk': obj.id})
-
+'''
 class GroupFormAdmin(ModelForm):
 	def clean_leader(self):
 		students = Student.objects.filter(student_group=self.instance)
@@ -38,7 +38,7 @@ class GroupFormAdmin(ModelForm):
 			raise ValidationError(u'Студент має належити до цієї групи', code="invalid")
 
 		return self.cleaned_data['leader']
-
+'''
 class GroupAdmin(admin.ModelAdmin):
 	list_display = ['title', 'leader']
 	list_display_links = ['title']
@@ -47,7 +47,7 @@ class GroupAdmin(admin.ModelAdmin):
 	list_filter = ['title']
 	list_per_page = 10
 	search_fields = ['title', 'leader__first_name', 'leader__last_name']
-	form = GroupFormAdmin
+	#form = GroupFormAdmin
 
 	#TODO:
 	def view_on_site(self, obj):
