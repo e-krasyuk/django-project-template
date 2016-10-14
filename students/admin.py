@@ -49,9 +49,8 @@ class GroupAdmin(admin.ModelAdmin):
 	search_fields = ['title', 'leader__first_name', 'leader__last_name']
 	#form = GroupFormAdmin
 
-	#TODO:
 	def view_on_site(self, obj):
-		return reverse('groups_edit', kwargs={'gid': obj.id}) #заменить gid на pk
+		return reverse('groups_edit', kwargs={'pk': obj.id}) 
 
 # Register your models here.
 admin.site.register(Student, StudentAdmin)
