@@ -98,6 +98,7 @@ class GroupCreateView(CreateView):
 class GroupUpdateForm(ModelForm):
 	class Meta:
 		model = Group
+		fields ='__all__'
 
 	def __init__(self, *args, **kwargs):
 		super(GroupUpdateForm, self).__init__(*args, **kwargs)

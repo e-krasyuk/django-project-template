@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from PIL import Image
 from django.forms import ModelForm, ValidationError
-from django.views.generic import UpdateView, DeleteView, CreateView
+from django.views.generic import UpdateView, DeleteView, CreateView, ListView
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -197,6 +197,7 @@ class StudentCreateView(CreateView):
 class StudentUpdateForm(ModelForm):
 	class Meta:
 		model = Student
+		fields ='__all__'
 
 	def __init__(self, *args, **kwargs):
 		super(StudentUpdateForm, self).__init__(*args, **kwargs)

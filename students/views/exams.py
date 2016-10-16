@@ -98,6 +98,7 @@ class ExamCreateView(CreateView):
 class ExamUpdateForm(ModelForm):
 	class Meta:
 		model = Exam
+		fields ='__all__'
 
 	def __init__(self, *args, **kwargs):
 		super(ExamUpdateForm, self).__init__(*args, **kwargs)

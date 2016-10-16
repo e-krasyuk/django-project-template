@@ -2,162 +2,85 @@
 
 {% load static from staticfiles %}
 
-{% block meta_title %}Журнал{% endblock meta_title %}
+{% block meta_title %}Облік Відвідування{% endblock meta_title %}
 
 {% block title %}Облік Відвідування{% endblock title %}
 
 {% block content %}
 
-<!-- Start Students Listing -->
-<h5><a href="">&larr;</a> Вересень 2016 <a href="">&rarr;</a></h5>
-	<table class="table table-hover table-bordered">
-		<thead>
-			<tr>
-				<th>#</th>
-							<th>Cтудент</th>
-							<th>Чт<br>1</th>
-							<th>Пт<br>2</th>
-							<th>Сб<br>3</th>
-							<th>Вс<br>4</th>
-							<th>Пн<br>5</th>
-							<th>Вт<br>6</th>
-							<th>Ср<br>7</th>
-							<th>Чт<br>8</th>
-							<th>Пт<br>9</th>
-							<th>Сб<br>10</th>
-							<th>Вс<br>11</th>
-							<th>Пн<br>12</th>
-							<th>Вт<br>13</th>
-							<th>Ср<br>14</th>
-							<th>Чт<br>15</th>
-							<th>Пт<br>16</th>
-							<th>Сб<br>17</th>
-							<th>Вс<br>18</th>
-							<th>Пн<br>19</th>
-							<th>Вт<br>20</th>
-							<th>Ср<br>21</th>
-							<th>Чт<br>22</th>
-							<th>Пт<br>23</th>
-							<th>Сб<br>24</th>
-							<th>Вс<br>25</th>
-							<th>Пн<br>26</th>
-							<th>Вт<br>27</th>
-							<th>Ср<br>28</th>
-							<th>Чт<br>29</th>
-							<th>Пт<br>30</th>
-				<th>Сб<br>31</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>1</td>
-							<td><a title="Редагувати" href="#">Ячменєвик<br>Олег</a></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-				<td><input type="checkbox" name="" value=""></td>
-			</tr>
+{% if not students %}
 
-			<tr>
-				<td>2</td>
-							<td><a title="Редагувати" href="#">Віталій<br>Подоба</a></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-				<td><input type="checkbox" name="" value=""></td>
-			</tr>
+<div class="alert alert-warning">
+	Поки немає жодного студента в базі. Будь-ласка,
+	<a href="{% url "students_add" %}">додайте</a> першого.
+</div>
 
-			<tr>
-				<td>3</td>
-							<td><a title="Редагувати" href="#">Іванов<br>Андрій</a></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-							<td><input type="checkbox" name="" value=""></td>
-				<td><input type="checkbox" name="" value=""></td>
-				<td><input type="checkbox" name="" value=""></td>
-		 	</tr>
+{% else %}
+
+<p id="journal-nav" class="text-center">
+	<a href="?month={{ prev_month }}" title="Попередній Місяць">&larr;</a>
+	<!-- TODO: translate month name -->
+	<strong>{{ month_verbose }} {{ year }}</strong>
+	<a href="?month={{ next_month }}" title="Наступний Місяць">&rarr;</a>
+</p>
+
+<table class="table table-hover table-striped table-bordered"
+	id="students-journal">
+
+<thead>
+	<tr class="header">
+		<th class="num">#</th>
+		<th class="name">Студент</th>
+		{% for day in month_header %}
+		<th class="day-header">
+			<!-- TODO: translate day name -->
+			{{ day.verbose }}
+			<br />
+			{{ day.day }}
+		</th>
+		{% endfor %}
+	</tr>
+</thead>
+
+<tbody>
+
+	{% csrf_token %}
+	
+	{% for student in students %}
+	<tr>
+		<td>
+			{% if is_paginated %}
+				{{ page_obj.start_index|add:forloop.counter|add:"-1" }}
+			{% else %}
+				{{ forloop.counter }}
+			{% endif %}
+		</td>
+		
+		<td>
+			<a title="Редагувати" target="_blank"
+				href="{% url "students_edit" student.id %}">
+				{{ student.fullname }}
+			</a>
+		</td>
+
+		{% for day in student.days %}
+		<td class="day-box">
+			<input type="checkbox" data-student-id="{{ student.id }}"
+				data-date="{{ day.date }}" data-url="{{ student.update_url }}"
+				value="1"{% if day.present %} checked="checked" {% endif %} />
+		</td>
+		{% endfor %}
+
+	</tr>
+	{% endfor %}
+
 	</tbody>
 </table>
-<!-- End Students Listing -->
+
+{% endif %}
+
+{% with object_list=students %}
+	{% include "students/pagination.html" %}
+{% endwith %}
 
 {% endblock content %}
