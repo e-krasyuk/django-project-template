@@ -13,11 +13,13 @@ from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 
 from ..models import Group, Student
+from ..util import paginate
 
 #Views for Groups
 
 def groups_list(request):
 	groups = Group.objects.all()
+
 	#try to order groups list
 	order_by = request.GET.get('order_by', '')
 	if order_by in ('title','leader'):
@@ -26,19 +28,24 @@ def groups_list(request):
 			groups = groups.reverse()
 
 	#paginate groups
-	paginator = Paginator(groups, 2)
-	page = request.GET.get('page')
-	try:
-		groups = paginator.page(page)
-	except PageNotAnInteger:
+
+	#paginator = Paginator(groups, 2)
+	#page = request.GET.get('page')
+	#try:
+	#	groups = paginator.page(page)
+	#except PageNotAnInteger:
 		# If page not an integer, deliver first page
-		groups = paginator.page(1)
-	except EmptyPage:
+	#	groups = paginator.page(1)
+	#except EmptyPage:
 		# If page is out of range (e.g. 9999), deliver last page of results.
-		groups = paginator.page(paginator.num_pages)
+	#	groups = paginator.page(paginator.num_pages)
 		
-	return render(request, 'students/groups_list.html', 
-		{'groups': groups})
+	#return render(request, 'students/groups_list.html', 
+	#	{'groups': groups})
+
+	
+	context = paginate(groups, 3, request, {}, var_name='groups')
+	return render(request, 'students/groups_list.html', context)
 
 #def groups_add(request):
 	#return HttpResponse('<h1>Group Add Form</h1>')
@@ -166,3 +173,4 @@ class GroupDeleteView(DeleteView):
 			group.delete()
 			messages.success(self.request, u'Групу видалено!')
 		return HttpResponseRedirect(self.get_success_url())
+

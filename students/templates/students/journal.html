@@ -6,6 +6,12 @@
 
 {% block title %}Облік Відвідування{% endblock title %}
 
+{% block status_message %}
+	<div class="alert alert-danger" id="ajax-error">
+		<span id="ajax-error-text"></span>
+	</div>
+{% endblock %} 
+
 {% block content %}
 
 {% if not students %}
@@ -16,6 +22,11 @@
 </div>
 
 {% else %}
+
+<div class="alert alert-warning">
+	Зміни в журнал зберігаються автоматично при кожному кліку в клітинці таблиці.
+	<span id="ajax-progress-indicator">Йде збереження...</span>
+</div>
 
 <p id="journal-nav" class="text-center">
 	<a href="?month={{ prev_month }}" title="Попередній Місяць">&larr;</a>
