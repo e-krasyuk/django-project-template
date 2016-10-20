@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic.base import TemplateView
 
 from ..models import MonthJournal, Student
-from ..util import paginate
+from ..util import paginate, get_current_group
 
 from django.http import JsonResponse
 
@@ -49,7 +49,11 @@ class JournalView(TemplateView):
 		if kwargs.get('pk'):
 			queryset = [Student.objects.get(pk=kwargs['pk'])]
 		else:
-			queryset = Student.objects.all().order_by('last_name')
+			current_group = get_current_group(self.request)
+			if current_group:
+				queryset = Student.objects.filter(student_group = current_group).order_by('last_name')
+			else:
+				queryset = Student.objects.all().order_by('last_name')
 
 		# url to update student presence, for form post
 		update_url = reverse('journal')
@@ -109,3 +113,5 @@ class JournalView(TemplateView):
 
 		# return success status
 		return JsonResponse({'status': 'success'})
+
+
