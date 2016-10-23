@@ -53,6 +53,7 @@ function initGroupSelector() {
 	});
 }
 
+//Calendar for Date and Time fields
 
 function initDateFields() {
 	$('input.dateinput').datetimepicker({
@@ -71,6 +72,8 @@ function initDateTimeFields() {
 		$(this).blur();
 	});
 }
+
+//Modal window for student edit form
 
 function initEditStudentForm(form, modal) {
 	//attach datepicker
@@ -167,14 +170,98 @@ function initEditStudentPage() {
 	});
 }
 
-function initAddStudentPage() {
-	$('a.add-button').click(function(event){
-		var modal = $('#myModal');
-		modal.modal('show');
-		return false
+//Modal window for student add form
+
+function initAddStudentForm(form, modal) {
+	//attach datepicker
+	initDateFields();
+
+	//close modal window on Cancel button click
+	form.find('input[name="cancel_button"]').click(function(event) {
+		modal.modal('hide');
+		return false;
+	});
+
+	//make form work in AJAX mode
+	form.ajaxForm({
+		'dataType': 'html',
+		'beforeSend': function() {
+			$('.ajax-loader-modal img').show();
+			$('input, select, textarea, a, button').attr('disabled', 'disabled');
+		},
+		'complete': function() {
+			$('.ajax-loader-modal img').hide();
+			$('input, select, textarea, a, button').removeAttr('disabled', 'disabled');
+		},
+		'error': function(){
+			alert('Помилка на сервері. Спробуйте пізніше.');
+			return false;
+		},
+		'success': function(data, status, xhr) {
+			var html = $(data), newform = html.find('#content-column form');
+
+			//copy alert to modal window
+			modal.find('.modal-body').html(html.find('.alert'));
+
+			//copy form to modal if we found it in server response
+			//if we have errors, server return form('newform')
+			//if no errors server return redirect to home page
+			if (newform.length > 0) {
+				modal.find('.modal-body').append(newform);
+
+				//initialize form fields anf buttons
+				initAddStudentForm(newform, modal);
+			} else {
+				//if no form(no errors), it means success
+				//and we need to reload page to get updated students list 
+				setTimeout(function() {
+					location.reload(true);}, 500);
+			}
+		}
 	});
 }
 
+function initAddStudentPage() {
+	$('a.add-button').click(function(event){
+		var link = $(this);
+		$.ajax({
+			'url': link.attr('href'),
+			'dataType': 'html',
+			'type': 'get',
+			'beforeSend': function() {
+				$('.ajax-loader').show();
+			},
+			'complete': function() {
+				$('.ajax-loader').hide();
+			},
+			'success': function(data, status, xhr){
+				//check if we got successful response from the server
+				if (status != 'success') {
+					alert('Помилка на сервері. Спробуйте пізніше.');
+					return false;
+				}
+
+				//update ,odal window with arrived content from the server
+				var modal = $('#myModal'), html = $(data), form = html.find('#content-column form');
+				modal.find('.modal-title').html(html.find('#content-column h2').text());
+				modal.find('.modal-body').html(form);
+
+				//init our add form
+				initAddStudentForm(form, modal);
+
+				//setup and show modal window finally
+				modal.modal({
+					'keyboard': false,
+					'backdrop': false,
+					'show': true
+				});
+			},
+			
+		});
+
+		return false;
+	});
+}
 
 
 $(document).ready(function(){
