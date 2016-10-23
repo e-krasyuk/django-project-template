@@ -264,11 +264,65 @@ function initAddStudentPage() {
 }
 
 
-$(document).ready(function(){
-	initJournal();
+//navigation tabs without reload
+function navTabs() {
+	var navLinks = $('.nav-tabs li > a');
+	navLinks.click(function(event) {
+		var url = this.href;
+		$.ajax({
+			'url': url,
+			'dataType': 'html',
+			'type': 'get',
+			'success': function(data, status, xhr) {
+				//check if we got successful response
+				if (status != 'success') {
+					alert('Помилка на сервері. Спробуйте пізніше.');
+					return false;
+				};
+				//update table
+				var content = $(data).find('#content-columns');
+				var pageTitle = content.find('h2').text();
+				$(document).find('#content-columns').html(content.html());
+				navLinks.each(function(index) {
+					if (this.href === url) {
+						$(this).parent().addClass('active');
+					} else {
+						$(this).parent().removeClass('active');
+					};
+				});
+				//update url in address bar
+				window.history.pushState('string', pageTitle, url);
+
+				//update page title
+				document.title = $(data).filter('title').text();
+			},
+			'error': function() {
+				alert('Помилка на сервері. Спробуйте пізніше.');
+				return false;
+			},
+			'beforeSend': function() {
+				$('.ajax-loader').show();
+			},
+			'complete': function() {	
+				$('.ajax-loader').hide();
+				initFunctions();
+			}
+		});
+		event.preventDefault();
+	});
+}
+
+
+$(document).ready(function() {
+	initFunctions();
+	navTabs();
 	initGroupSelector();
+});
+
+function initFunctions() {
+	initJournal();
 	initDateFields();
 	initDateTimeFields();
 	initEditStudentPage();
 	initAddStudentPage();
-});
+}

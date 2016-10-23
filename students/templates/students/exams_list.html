@@ -7,7 +7,7 @@
 {% block title %}Іспит{% endblock title %}
 
 {% block content %}
-<a href="{% url 'exams_add' %}" class="btn btn-primary">Додати Іспит</a>
+<a href="{% url 'exams_add' %}" class="btn btn-primary add-button">Додати Іспит</a>
 
 <!-- Start Students Listing -->
 <table class="table table-hover table-striped">
@@ -45,7 +45,7 @@
 					{{ forloop.counter }}
 				{% endif %}
 			</td>
-			<td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.subject }}</a></td>
+			<td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}" class="student-edit-form-link">{{ exam.subject }}</a></td>
 			<td>{{ exam.date }}</td> 
 			<td>{{ exam.teacher }}</td>
 			<td>{{ exam.exam_group }}</td>
@@ -59,7 +59,7 @@
 							<a role="menuitem" tabindex="-1" href="/journal/{{ exam.id }}">Відвідування</a>
 						</li>
 						<li role="presentation">
-							<a role="menuitem" tabindex="-1" href="{% url 'exams_edit' exam.id %}">Редагувати</a>
+							<a role="menuitem" tabindex="-1" href="{% url 'exams_edit' exam.id %}" class="student-edit-form-link">Редагувати</a>
 						</li>
 						<li role="presentation">
 							<a role="menuitem" tabindex="-1" href="{% url 'exams_delete' exam.id %}">Видалити</a>
