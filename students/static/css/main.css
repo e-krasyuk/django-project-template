@@ -101,3 +101,33 @@ th.day-header {
 #ajax-error {
 	display: none;
 }
+
+.ajax-loader{
+	display: none;
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    background:rgba(0,0,0,0.1);
+}   
+
+.ajax-loader img{
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left: -65px;
+    margin-top: -20px;
+}
+
+.ajax-loader-modal {
+	position: relative;
+	left: -7%;
+	width: 130px;
+	height: 20px;
+	margin: auto;
+}
+
+.ajax-loader-modal img {
+	display: none;
+}
