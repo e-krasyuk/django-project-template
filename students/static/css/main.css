@@ -94,6 +94,7 @@ th.day-header {
 	text-align: center;
 }
 
+
 #ajax-progress-indicator {
 	display: none;
 }
@@ -102,6 +103,7 @@ th.day-header {
 	display: none;
 }
 
+/* AJAX loader */
 .ajax-loader{
 	display: none;
     position:absolute;
@@ -131,3 +133,7 @@ th.day-header {
 .ajax-loader-modal img {
 	display: none;
 }
+
+
+/* glyphicon for birthday field */
+.input-group-addon { width: 13%; }

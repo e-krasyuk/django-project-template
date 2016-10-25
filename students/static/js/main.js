@@ -313,6 +313,37 @@ function navTabs() {
 }
 
 
+//sorting kist of students
+function sortingWithAjax() {
+    $(".new-content-sorting").click(function() {
+        var url = $(this);  
+        $.ajax({
+            'url': url.attr('href'),
+            'dataType': 'html',
+            'type': 'get',
+            'success': function(data, status, xhr){
+                // check if we got successfull response from the server
+                if (status != 'success') {
+                    alert('Ошибка на сервере, попробуйте пожалуйста позже.');
+                    return false;
+                }
+                // update modal window with arrived content from the server
+                var table = $('.table'), newpage = $(data), newtable = newpage.find('.table');
+                table.html(newtable);
+                sortingWithAjax();
+            },
+
+            'error': function(){
+                alert('Ошибка на сервере, попробуйте пожалуйста позже.');
+                return false;
+            }
+        });
+        return false;
+    });
+}
+
+
+
 $(document).ready(function() {
 	initFunctions();
 	navTabs();
@@ -325,4 +356,5 @@ function initFunctions() {
 	initDateTimeFields();
 	initEditStudentPage();
 	initAddStudentPage();
+	sortingWithAjax();
 }

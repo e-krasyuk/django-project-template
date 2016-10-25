@@ -12,7 +12,7 @@ from django.views.generic import UpdateView, DeleteView, CreateView, ListView
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from crispy_forms.bootstrap import FormActions
+from crispy_forms.bootstrap import FormActions, AppendedText
 from django.contrib import messages
 
 from ..models import Student, Group
@@ -175,11 +175,14 @@ class StudentCreateForm(ModelForm):
 		self.helper.label_class = 'col-sm-2 control-label'
 		self.helper.field_class = 'col-sm-10'
 
+		self.helper['birthday'].wrap(AppendedText, '<i class="glyphicon glyphicon-calendar"></i>')
+
 		#add buttons
 		self.helper.layout.append(FormActions(
 			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
 			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
 		))
+
 
 
 class StudentCreateView(CreateView):
