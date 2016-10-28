@@ -169,7 +169,7 @@ class GroupDeleteView(DeleteView):
 	template_name = 'students/groups_confirm_delete.html'
 
 	def get_success_url(self):
-		return reverse('home')
+		return reverse('groups')
 
 	def delete(self, request, *args, **kwargs):
 		group = self.get_object()

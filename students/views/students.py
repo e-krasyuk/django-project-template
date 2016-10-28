@@ -230,6 +230,8 @@ class StudentUpdateForm(ModelForm):
 		self.helper.label_class = 'col-sm-2 control-label'
 		self.helper.field_class = 'col-sm-10'
 
+		self.helper['birthday'].wrap(AppendedText, '<i class="glyphicon glyphicon-calendar"></i>')
+
 		# add buttons
 		self.helper.layout.append(FormActions(
 			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),

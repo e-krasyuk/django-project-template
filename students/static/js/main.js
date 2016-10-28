@@ -78,6 +78,7 @@ function initDateTimeFields() {
 function initEditStudentForm(form, modal) {
 	//attach datepicker
 	initDateFields();
+	initDateTimeFields();
 
 	//close modal window on Cancel button click
 	form.find('input[name="cancel_button"]').click(function(event) {
@@ -175,6 +176,7 @@ function initEditStudentPage() {
 function initAddStudentForm(form, modal) {
 	//attach datepicker
 	initDateFields();
+	initDateTimeFields();
 
 	//close modal window on Cancel button click
 	form.find('input[name="cancel_button"]').click(function(event) {
