@@ -12,6 +12,8 @@ from studentsdb.settings import ADMIN_EMAIL
 
 from django.contrib import messages
 
+import logging
+
 class ContactForm(forms.Form):
 	from_email = forms.EmailField(
 		label=u'Ваша Email Адреса')
@@ -72,6 +74,8 @@ class ContactView(FormView):
             send_mail(subject, message, from_email, [ADMIN_EMAIL])
         except Exception:
             messages.error(self.request, u"Під час відправки листа виникла непередбачувана помилка. Спробуйте скористатись даною формою пізніше.")
+            logger = logging.getLogger(__name__)
+            logger.exception(message)
         else:
             messages.success(self.request, u"Повідомлення успішно відправлене!")
         return super(ContactView, self).form_valid(form)
