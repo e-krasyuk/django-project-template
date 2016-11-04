@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
@@ -6,6 +5,7 @@ from calendar import monthrange, weekday, day_abbr
 
 from django.core.urlresolvers import reverse
 from django.views.generic.base import TemplateView
+from django.utils.translation import ugettext as _
 
 from ..models import MonthJournal, Student
 from ..util import paginate, get_current_group
@@ -41,7 +41,7 @@ class JournalView(TemplateView):
 		# journal table header elements
 		myear, mmonth = month.year, month.month
 		number_of_days = monthrange(myear, mmonth)[1]
-		context['month_header'] = [{'day': d,'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
+		context['month_header'] = [{'day': d,'verbose': day_abbr[weekday(myear, mmonth, d)][:3]}
 			for d in range(1, number_of_days+1)]
 
 		# get all students from database, or just one

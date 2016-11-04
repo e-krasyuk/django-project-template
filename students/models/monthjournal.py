@@ -1,29 +1,28 @@
-# -*- coding: utf-8 -*-
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class MonthJournal(models.Model):
 	"""Student Monthly Journal"""
 
 	class Meta:
-		verbose_name = u'Місячний Журнал'
-		verbose_name_plural = u'Місячні Журнали'
+		verbose_name = _(u'Month Journal')
+		verbose_name_plural = _(u'Month Journals')
 
 	student = models.ForeignKey('Student',
-		verbose_name=u'Студент',
+		verbose_name=_(u'Student'),
 		blank=False,
 		unique_for_month='date')
 	# we only need year and month, so always set day to first day ofthe month
 	date = models.DateField(
-		verbose_name=u'Дата',
+		verbose_name=_(u'Date'),
 		blank=False)
 
 
-	# list of days, each says whether student was presenе or not
 	scope = locals()
 	for field_num in range(1, 32):
 		scope['present_day'+str(field_num)]=models.BooleanField(
-			verbose_name=u'День №'+ str(field_num), default=False)
+			verbose_name=_(u'Day #') + str(field_num), default=False)
 
 	#present_day1 = models.BooleanField(default=False)
 	#present_day2 = models.BooleanField(default=False)

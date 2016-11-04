@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-  
 from django.shortcuts import render
 from django import forms
 from django.core.mail import send_mail
@@ -7,6 +6,7 @@ from django.core.urlresolvers import reverse_lazy, reverse
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.views.generic.edit import FormView
+from django.utils.translation import ugettext as _
 
 from studentsdb.settings import ADMIN_EMAIL
 
@@ -16,14 +16,14 @@ import logging
 
 class ContactForm(forms.Form):
 	from_email = forms.EmailField(
-		label=u'Ваша Email Адреса')
+		label=_(u'Your email'))
 
 	subject = forms.CharField(
-		label=u'Заголовок листа',
+		label=_(u'Message header'),
 		max_length=128)
 
 	message = forms.CharField(
-		label=u'Текст повідомлення',
+		label=_(u'Message text'),
 		max_length=2560,
 		widget=forms.Textarea)
 
@@ -46,17 +46,17 @@ class ContactForm(forms.Form):
 		self.helper.field_class = 'col-sm-10'
 
 		#form buttons
-		self.helper.add_input(Submit('send_button', u'Надіслати')) 
+		self.helper.add_input(Submit('send_button', _(u'Send'))) 
 
 	from_email = forms.EmailField(
-		label=u'Ваша Email Адреса')
+		label=_(u'Your email'))
 
 	subject = forms.CharField(
-		label=u'Заголовок листа',
+		label=_(u'Message header'),
 		max_length=128)
 
 	message = forms.CharField(
-		label=u'Текст повідомлення',
+		label=_(u'Message text'),
 		max_length=2560,
 		widget=forms.Textarea)
 
@@ -73,41 +73,12 @@ class ContactView(FormView):
         try:
             send_mail(subject, message, from_email, [ADMIN_EMAIL])
         except Exception:
-            messages.error(self.request, u"Під час відправки листа виникла непередбачувана помилка. Спробуйте скористатись даною формою пізніше.")
+            messages.error(self.request, _(u"While sending email erro occurred. Try to use the form later."))
             logger = logging.getLogger(__name__)
             logger.exception(message)
         else:
-            messages.success(self.request, u"Повідомлення успішно відправлене!")
+            messages.success(self.request, _(u"Message successfully sent!"))
         return super(ContactView, self).form_valid(form)
 
 
 
-'''
-def contact_admin(request):
-	#check if form was posted
-	if request.method == 'POST':
-		#create a form instance and populate it with data from the request:
-		form = ContactForm(request.POST)
-
-		#check whether user data is valid:
-		if form.is_valid():
-			#send email
-			subject = form.cleaned_data['subject']
-			message = form.cleaned_data['message']
-			from_email = form.cleaned_data['from_email']
-
-			try:
-				send_mail(subject, message, from_email, [ADMIN_EMAIL])
-			except Exception:
-				message = u'Під час відправки виникла помилка. Спробуйте скористатись даною формою пізніше.'
-			else:
-				message = u'Повідомлення успішно надіслане!'
-
-			#redirect to same contact page with success message
-			return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('contact_admin'), message))
-
-	#if there was not POST render blank form
-	else:
-		form = ContactForm()
-	return render(request, 'contact_admin/form.html', {'form': form})
-'''

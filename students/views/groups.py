@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import DeleteView, UpdateView, CreateView
+from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.forms import ModelForm, ValidationError
@@ -82,8 +81,8 @@ class GroupCreateForm(ModelForm):
 
 		#add buttons
 		self.helper.layout.append(FormActions(
-			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+			Submit('add_button', _(u'Save'), css_class="btn btn-primary"),
+			Submit('cancel_button', _(u'Cancel'), css_class="btn btn-link"),
 		))
 
 class GroupCreateView(CreateView):
@@ -92,14 +91,12 @@ class GroupCreateView(CreateView):
 	form_class = GroupCreateForm
 
 	def get_success_url(self):
-		#return u'%s?status_message=Студента успішно створено!' % reverse('home')
-		messages.success(self.request, u'Групу створено!')
+		messages.success(self.request, _(u'Group created!'))
 		return reverse('groups')
 
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
-			#return HttpResponseRedirect(u'%s?status_message=Створення відмінено!' % reverse('home'))
-			messages.info(self.request, u'Створення відмінено!')
+			messages.info(self.request, _(u'Creation canceled!'))
 			return HttpResponseRedirect(reverse('groups'))
 		else:
 			#Use post method from UpdateView
@@ -131,14 +128,14 @@ class GroupUpdateForm(ModelForm):
 
 		# add buttons
 		self.helper.layout.append(FormActions(
-			Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-			Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+			Submit('add_button', _(u'Save'), css_class="btn btn-primary"),
+			Submit('cancel_button', _(u'Cancel'), css_class="btn btn-link"),
 		))
 	
 	def clean_leader(self):
 		students = Student.objects.filter(student_group=self.instance)
 		if self.cleaned_data['leader'] not in students:
-			raise ValidationError(u'Студент має належити до цієї групи', code="invalid")
+			raise ValidationError(_(u'Student must belong to this group'), code="invalid")
 
 		return self.cleaned_data['leader']
 	
@@ -149,15 +146,13 @@ class GroupUpdateView(UpdateView):
 	form_class = GroupUpdateForm
 
 	def get_success_url(self):
-		#return u'%s?status_message=Студента успішно збережено!' % reverse('home')
-		messages.success(self.request, u'Групу відредаговано!')
+		messages.success(self.request, _(u'Group edited!'))
 		return reverse('groups')
 
 	def post(self, request, *args, **kwargs):
 		if request.POST.get('cancel_button'):
-			messages.info(self.request, u'Редагування відмінено!')
+			messages.info(self.request, _(u'Edition canceled!'))
 			return HttpResponseRedirect(reverse('groups'))
-				#u'%s?status_message=Редагування групи відмінено!' % reverse('home'))
 		else:
 			return super(GroupUpdateView, self).post(request, *args, **kwargs)
 
@@ -174,9 +169,9 @@ class GroupDeleteView(DeleteView):
 	def delete(self, request, *args, **kwargs):
 		group = self.get_object()
 		if group.student_set.exists():
-			messages.error(self.request, u'Група %s не порожня!' % group.title)
+			messages.error(self.request, _(u'Group %s is not empty!') % group.title)
 		else:
 			group.delete()
-			messages.success(self.request, u'Групу видалено!')
+			messages.success(self.request, _(u'Group deleted!'))
 		return HttpResponseRedirect(self.get_success_url())
 
