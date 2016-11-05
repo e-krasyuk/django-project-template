@@ -98,7 +98,7 @@ function initEditStudentForm(form, modal) {
 			$('input, select, textarea, a, button').removeAttr('disabled', 'disabled');
 		},
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте пізніше.');
+			alert(gettext('There was an error on server. Try again later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -141,7 +141,7 @@ function initEditStudentPage() {
 			'success': function(data, status, xhr) {
 				//check if we got successfull response from the server
 				if (status != 'success') {
-					alert('Помилка на сервері. Спробуйте пізніше.');
+					alert(gettext('There was an error on server. Try again later.'));
 					return false;
 				}
 
@@ -161,7 +161,7 @@ function initEditStudentPage() {
 				});
 			},
 			'error': function() {
-				alert('Помилка на сервері. Спробуйте пізніше.');
+				alert(gettext('There was an error on server. Try again later.'));
 				return false;
 			}
 		});
@@ -196,7 +196,7 @@ function initAddStudentForm(form, modal) {
 			$('input, select, textarea, a, button').removeAttr('disabled', 'disabled');
 		},
 		'error': function(){
-			alert('Помилка на сервері. Спробуйте пізніше.');
+			alert(gettext('There was an error on server. Try again later.'));
 			return false;
 		},
 		'success': function(data, status, xhr) {
@@ -239,7 +239,7 @@ function initAddStudentPage() {
 			'success': function(data, status, xhr){
 				//check if we got successful response from the server
 				if (status != 'success') {
-					alert('Помилка на сервері. Спробуйте пізніше.');
+					alert(gettext('There was an error on server. Try again later.'));
 					return false;
 				}
 
@@ -278,7 +278,7 @@ function navTabs() {
 			'success': function(data, status, xhr) {
 				//check if we got successful response
 				if (status != 'success') {
-					alert('Помилка на сервері. Спробуйте пізніше.');
+					alert(gettext('There was an error on server. Try again later.'));
 					return false;
 				};
 				//update table
@@ -299,7 +299,7 @@ function navTabs() {
 				document.title = $(data).filter('title').text();
 			},
 			'error': function() {
-				alert('Помилка на сервері. Спробуйте пізніше.');
+				alert(gettext('There was an error on server. Try again later.'));
 				return false;
 			},
 			'beforeSend': function() {
@@ -326,7 +326,7 @@ function sortingWithAjax() {
             'success': function(data, status, xhr){
                 // check if we got successfull response from the server
                 if (status != 'success') {
-                    alert('Ошибка на сервере, попробуйте пожалуйста позже.');
+                    alert(gettext('There was an error on server. Try again later.'));
                     return false;
                 }
                 // update modal window with arrived content from the server
@@ -336,7 +336,7 @@ function sortingWithAjax() {
             },
 
             'error': function(){
-                alert('Ошибка на сервере, попробуйте пожалуйста позже.');
+                alert(gettext('There was an error on server. Try again later.'));
                 return false;
             }
         });
