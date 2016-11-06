@@ -138,7 +138,7 @@ th.day-header {
 /* glyphicon for birthday field */
 .input-group-addon { width: 13%; }
 
-
+/* Language switcher */
 #lang-select {
 	margin-top: 15px;
 }
@@ -153,4 +153,8 @@ th.day-header {
 }
 
 
-
+/* User's Toolbar */
+#user-toolbar {
+	margin-top: 30px;
+	text-align: right;
+}

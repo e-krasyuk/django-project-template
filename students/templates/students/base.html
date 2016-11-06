@@ -48,6 +48,8 @@
 			</div>
 			<!-- End Language Select -->
 
+			{% if user.is_authenticated %}
+
 			<!-- Groups Selector -->
 			<div class="col-xs-4" id="group-selector">
 				{% block group_menu %}
@@ -60,6 +62,22 @@
 				</select>
 				{% endblock group_menu %}
 			</div>
+
+			<!-- User's toolbar for authenticated user -->
+			<div class="col-xs-2" id="user-toolbar">
+				<span>{{ user.username }}</span> |
+				<a href="{% url 'users:auth_logout' %}">{% trans 'Logout' %}</a>
+			</div>
+
+			{% else %}
+
+			<!-- User's toolbar for anonymous users -->
+			<div class="col-xs-6" id="user-toolbar">
+				<a href="{% url 'users:auth_login' %}">{% trans 'Login' %}</a> |
+				<a href="{% url 'users:registration_register' %}">{% trans 'Register' %}</a>
+			</div>
+			{% endif %}
+
 		</div>
 		<!-- End Header -->
 

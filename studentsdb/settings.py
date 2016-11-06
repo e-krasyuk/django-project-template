@@ -13,7 +13,6 @@ PORTAL_URL = 'http://localhost:8000'
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -39,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crispy_forms',
     'contact_form',
+    'registration',
     'students',
 )
 
@@ -145,3 +145,12 @@ LOGGING = {
         }
     }
 }
+
+REGISTRATION_OPEN = True
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'studentsdb', 'templates'),
+    )
+
+
+
