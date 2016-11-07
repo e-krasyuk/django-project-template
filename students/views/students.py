@@ -8,6 +8,8 @@ from PIL import Image
 from django.forms import ModelForm, ValidationError
 from django.views.generic import UpdateView, DeleteView, CreateView, ListView
 from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -107,6 +109,9 @@ class StudentCreateView(CreateView):
 			#Use post method from UpdateView
 			return super(StudentCreateView, self).post(request, *args, **kwargs)
 
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(StudentCreateView, self).dispatch(*args, **kwargs)
 
 
 #def students_edit(request, sid):
@@ -166,6 +171,10 @@ class StudentUpdateView(UpdateView):
 		else:
 			return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(StudentUpdateView, self).dispatch(*args, **kwargs)
+
 #def students_delete(request, sid):
 	#return HttpResponse('<h1>Delete Student %s</h1>' % sid)
 
@@ -176,3 +185,7 @@ class StudentDeleteView(DeleteView):
 	def get_success_url(self):
 		messages.success(self.request, _(u'Student deleted!'))
 		return reverse('home')
+
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(StudentDeleteView, self).dispatch(*args, **kwargs)

@@ -7,6 +7,8 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.views.generic.edit import FormView
 from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import permission_required
 
 from studentsdb.settings import ADMIN_EMAIL
 
@@ -61,24 +63,28 @@ class ContactForm(forms.Form):
 		widget=forms.Textarea)
 
 class ContactView(FormView):
-    template_name = 'contact_admin/form.html'
-    form_class = ContactForm
-    success_url = reverse_lazy('contact_admin')
+	template_name = 'contact_admin/form.html'
+	form_class = ContactForm
+	success_url = reverse_lazy('contact_admin')
 
-    def form_valid(self, form):
-        subject = form.cleaned_data['subject']
-        message = form.cleaned_data['message']
-        from_email = form.cleaned_data['from_email']
+	def form_valid(self, form):
+		subject = form.cleaned_data['subject']
+		message = form.cleaned_data['message']
+		from_email = form.cleaned_data['from_email']
 
-        try:
-            send_mail(subject, message, from_email, [ADMIN_EMAIL])
-        except Exception:
-            messages.error(self.request, _(u"While sending email erro occurred. Try to use the form later."))
-            logger = logging.getLogger(__name__)
-            logger.exception(message)
-        else:
-            messages.success(self.request, _(u"Message successfully sent!"))
-        return super(ContactView, self).form_valid(form)
+		try:
+			send_mail(subject, message, from_email, [ADMIN_EMAIL])
+		except Exception:
+			messages.error(self.request, _(u"While sending email erro occurred. Try to use the form later."))
+			logger = logging.getLogger(__name__)
+			logger.exception(message)
+		else:
+			messages.success(self.request, _(u"Message successfully sent!"))
+		return super(ContactView, self).form_valid(form)
+
+	@method_decorator(permission_required('auth.add_user'))
+	def dispatch(self, *args, **kwargs):
+		return super(ContactView, self).dispatch(*args, **kwargs)
 
 
 

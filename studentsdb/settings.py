@@ -152,5 +152,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'studentsdb', 'templates'),
     )
 
-
+#redefine default login, logout forms 
+LOGIN_URL = 'users:auth_login'
+LOGOUT_URL = 'users:auth_logout'
 
