@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'contact_form',
     'registration',
     'students',
+    'studentsdb',
 )
 
 MIDDLEWARE_CLASSES = (
