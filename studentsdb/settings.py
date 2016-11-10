@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'registration',
     'social.apps.django_app.default',
     'students',
-    'studentsdb',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -153,7 +152,7 @@ LOGGING = {
 REGISTRATION_OPEN = True
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'studentsdb', 'templates'),
+    os.path.join(BASE_DIR, 'stud_auth', 'templates'),
     )
 
 #redefine default login, logout forms 
