@@ -1,9 +1,11 @@
 from django.conf import global_settings
 from db import DATABASES
-from gmail_pass import password
+from secret_passwords import gmail_password, facebook_password
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 "django.core.context_processors.request",
+"social.apps.django_app.context_processors.backends",
+"social.apps.django_app.context_processors.login_redirect",
 "studentsdb.context_processors.students_proc",
 "students.context_processors.groups_processor",
 )
@@ -39,6 +41,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'contact_form',
     'registration',
+    'social.apps.django_app.default',
     'students',
     'studentsdb',
 )
@@ -93,7 +96,7 @@ ADMIN_EMAIL = 'admin@studentsdb.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'evgeniykrasyuk@gmail.com' 
-EMAIL_HOST_PASSWORD = password
+EMAIL_HOST_PASSWORD = gmail_password
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
@@ -157,3 +160,11 @@ TEMPLATE_DIRS = (
 LOGIN_URL = 'users:auth_login'
 LOGOUT_URL = 'users:auth_logout'
 
+#Settings for Facebook logging
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    )
+
+SOCIAL_AUTH_FACEBOOK_KEY = '330950913931053'
+SOCIAL_AUTH_FACEBOOK_SECRET = facebook_password

@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import DeleteView, UpdateView, CreateView
 from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.forms import ModelForm, ValidationError
@@ -102,6 +104,10 @@ class GroupCreateView(CreateView):
 			#Use post method from UpdateView
 			return super(GroupCreateView, self).post(request, *args, **kwargs)
 
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(GroupCreateView, self).dispatch(*args, **kwargs)
+
 #def groups_edit(request, gid):
 	#return HttpResponse('<h1>Edit Group %s</h1>' % gid)
 
@@ -156,6 +162,10 @@ class GroupUpdateView(UpdateView):
 		else:
 			return super(GroupUpdateView, self).post(request, *args, **kwargs)
 
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(GroupUpdateView, self).dispatch(*args, **kwargs)
+
 #def groups_delete(request, gid):
 	#return HttpResponse('<h1>Delete Group %s</h1>' % gid)
 
@@ -174,4 +184,8 @@ class GroupDeleteView(DeleteView):
 			group.delete()
 			messages.success(self.request, _(u'Group deleted!'))
 		return HttpResponseRedirect(self.get_success_url())
+
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(GroupDeleteView, self).dispatch(*args, **kwargs)
 

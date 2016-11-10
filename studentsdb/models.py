@@ -18,5 +18,11 @@ class StProfile(models.Model):
 		verbose_name=_(u'Mobile Phone'),
 		default='')
 
+	adress = models.CharField(
+		max_length=30,
+		blank=True,
+		verbose_name=_(u'Adress'),
+		default='')
+
 	def __unicode__(self):
 		return self.user.username

@@ -6,6 +6,8 @@ from calendar import monthrange, weekday, day_abbr
 from django.core.urlresolvers import reverse
 from django.views.generic.base import TemplateView
 from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from ..models import MonthJournal, Student
 from ..util import paginate, get_current_group
@@ -92,6 +94,10 @@ class JournalView(TemplateView):
 		# finally return updated context
 		# with paginated students
 		return context
+
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(JournalView, self).dispatch(*args, **kwargs)
 
 	#method for post request(ajax)
 	def post(self, request, *args, **kwargs):

@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import DeleteView, UpdateView, CreateView
 from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.forms import ModelForm, ValidationError
@@ -101,6 +103,10 @@ class ExamCreateView(CreateView):
 			#Use post method from UpdateView
 			return super(ExamCreateView, self).post(request, *args, **kwargs)
 
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(ExamCreateView, self).dispatch(*args, **kwargs)
+
 #def exams_edit(request, eid):
 	#return HttpResponse('<h1>Edit Exam %s</h1>' % eid)
 
@@ -147,6 +153,10 @@ class ExamUpdateView(UpdateView):
 		else:
 			return super(ExamUpdateView, self).post(request, *args, **kwargs)
 
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(ExamUpdateView, self).dispatch(*args, **kwargs)
+
 #def exams_delete(request, eid):
 	#return HttpResponse('<h1>Delete Exam %s</h1>' % eid)
 
@@ -162,3 +172,7 @@ class ExamDeleteView(DeleteView):
 		exam.delete()
 		messages.success(self.request, _(u'Exam deleted!'))
 		return HttpResponseRedirect(self.get_success_url())
+
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(ExamDeleteView, self).dispatch(*args, **kwargs)
