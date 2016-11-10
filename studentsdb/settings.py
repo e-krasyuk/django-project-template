@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'contact_form',
     'registration',
+    'stud_auth',
     'social.apps.django_app.default',
     'students',
 )
@@ -151,9 +152,10 @@ LOGGING = {
 }
 
 REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 1
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'stud_auth', 'templates'),
+    os.path.join(BASE_DIR, 'students', 'templates', 'students'),
     )
 
 #redefine default login, logout forms 
