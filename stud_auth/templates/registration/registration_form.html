@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-	<form action="{% url 'users:registration_register' %} method="post" ">
+	<form action="{% url 'registration_register' %} method="post" ">
 
 	{% csrf_token %}
 	<input type="hidden" value="{% url 'home' %}" name="next">

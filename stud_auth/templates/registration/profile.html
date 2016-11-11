@@ -12,7 +12,7 @@
 		<div class="row" id="sub-header">
 			<div class="col-xs-12">
 				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" {% if request.path == '/users/profile/' %}class="active"{% endif %}><a href="{% url "profile" %}">{% trans "Profile" %}</a></li>
+					<li role="presentation" {% if request.path == '/accounts/profile/' %}class="active"{% endif %}><a href="{% url "profile" %}">{% trans "Profile" %}</a></li>
 					<li role="presentation" {% if '/groups' in request.path %}class="active"{% endif %}><a href="{% url "groups" %}">{% trans "Edit" %}</a></li>
 				
 

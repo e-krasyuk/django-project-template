@@ -61,11 +61,11 @@ urlpatterns = patterns('',
 
 	#User Related urls
 	url(r'^accounts/profile/$', login_required(TemplateView.as_view(template_name='registration/profile.html')), name='profile'),
-	url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'},name='auth_logout'),
+	url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'},name='auth_logout'),
 	url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'),name='registration_complete'),
 	url(r'^activate/complete/$', TemplateView.as_view(template_name='registration/activation_complete.html'), name='registration_activation_complete'),
-	url(r'^users/', include('registration.backends.default.urls')),
-	url(r'^users/', include('django.contrib.auth.urls')),
+	url(r'^accounts/', include('registration.backends.default.urls')),
+	url(r'^accounts/', include('django.contrib.auth.urls')),
 
 	#Social Auth Related urls
 	url('^social/', include('social.apps.django_app.urls', namespace='social')),

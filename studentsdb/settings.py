@@ -1,6 +1,6 @@
 from django.conf import global_settings
 from db import DATABASES
-from secret_passwords import gmail_password, facebook_password
+from secret_passwords import gmail_account_pass, facebook_password, twitter_password
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 "django.core.context_processors.request",
@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'registration',
+    'stud_auth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +42,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crispy_forms',
     'contact_form',
-    'registration',
-    'stud_auth',
     'social.apps.django_app.default',
     'students',
 )
@@ -97,7 +97,7 @@ ADMIN_EMAIL = 'admin@studentsdb.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'evgeniykrasyuk@gmail.com' 
-EMAIL_HOST_PASSWORD = gmail_password
+EMAIL_HOST_PASSWORD = gmail_account_pass
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
@@ -165,8 +165,14 @@ LOGOUT_URL = 'users:auth_logout'
 #Settings for Facebook logging
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
+    'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
     )
 
+#Social keys
 SOCIAL_AUTH_FACEBOOK_KEY = '330950913931053'
 SOCIAL_AUTH_FACEBOOK_SECRET = facebook_password
+
+SOCIAL_AUTH_TWITTER_KEY = 'ShKP4i3p7GLrCeq88uGVQN9n3'
+SOCIAL_AUTH_TWITTER_SECRET = twitter_password
+
