@@ -62,7 +62,7 @@ def get_current_group(request):
 		from .models import Group
 		try:
 			group = Group.objects.get(pk=int(pk))
-		except GroupNotExist:
+		except Group.DoesNotExist:
 			return None
 		else:
 			return group
