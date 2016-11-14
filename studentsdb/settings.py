@@ -73,7 +73,7 @@ from .db import DATABASES
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'uk'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 

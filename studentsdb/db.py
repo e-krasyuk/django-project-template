@@ -9,8 +9,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'localhost',
-        'USER': 'students_db_user',
-        'PASSWORD': 'astro12',
+        #'USER': 'students_db_user',
+        #'PASSWORD': 'astro12',
+        'USER': 'root',
+        'PASSWORD': 'qxsad45',
         'NAME': 'students_db',
+        'TEST': {
+            'CHARSET': 'utf8',
+            'COLLATION': 'utf8_general_ci',
+        }
     }
 }

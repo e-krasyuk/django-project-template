@@ -55,7 +55,7 @@ def students_list(request):
 	#return render(request, 'students/students_list.html', 
 	#	{'students': students})
 
-	context = paginate(students, 5, request, {}, var_name='students')
+	context = paginate(students, 3, request, {}, var_name='students')
 	return render(request, 'students/students_list.html', context)
 
 class StudentCreateForm(ModelForm):
