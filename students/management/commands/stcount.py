@@ -8,10 +8,10 @@ class Command(BaseCommand):
 	args = '<model_name model_name ...>'
 	help = 'Prints to console number of student related objects in database.'
 
-	models = (('students', Student), ('group', Group), ('user', User))
+	models = (('student', Student), ('group', Group), ('user', User))
 
 	def handle(self, *args, **options):
 		for name, model in self.models:
 			if name in args:
-				self.stdout.write('Number of students in database: %d' %
-					name. models.objects.count())
+				self.stdout.write('Number of %ss in database: %d' % 
+					(name, model.objects.count()))
