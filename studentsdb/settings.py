@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'contact_form',
     'social.apps.django_app.default',
+    'django_coverage',
     'students',
 )
 
@@ -73,7 +74,7 @@ from .db import DATABASES
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'UTC'
 
@@ -176,3 +177,4 @@ SOCIAL_AUTH_FACEBOOK_SECRET = facebook_password
 SOCIAL_AUTH_TWITTER_KEY = 'ShKP4i3p7GLrCeq88uGVQN9n3'
 SOCIAL_AUTH_TWITTER_SECRET = twitter_password
 
+COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'coverage')
