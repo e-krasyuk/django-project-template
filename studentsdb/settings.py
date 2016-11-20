@@ -1,5 +1,7 @@
 from django.conf import global_settings
+
 from db import DATABASES
+
 from secret_passwords import gmail_account_pass, facebook_password, twitter_password
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
