@@ -15,9 +15,10 @@
 
 {% block content %}
 
-<form action="{% url 'auth_login' %}" method="post">
+<form action="{% url 'accounts:auth_login' %}" method="post">
 
 	{% csrf_token %}
+
 	<input type="hidden" value="{% url 'home' %}" name="next">
 	<div class="form-group">
 		<label for="login">{% trans "Your Username" %}</label>
@@ -30,7 +31,10 @@
 	</div>
 
 	<button type="submit" class="btn btn-primary">{% trans "Login" %}</button>
-	
+	<br>
+	<p>{% trans "Forgot your password?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>.</p>
+	<p>{% trans "Not a member?" %} <a href="{% url 'accounts:registration_register' %}">{% trans "Register" %}</a></p>
+
 </form>
 
 {% endblock content %}

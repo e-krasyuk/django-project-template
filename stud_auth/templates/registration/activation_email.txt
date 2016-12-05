@@ -12,7 +12,7 @@ To activate this account, please click the following link within the next
 {{ expiration_days }} days:
 {% endblocktrans %}
 
-http://{{site.domain}}{% url 'users:registration_activate' activation_key %}
+http://{{site.domain}}{% url 'accounts:registration_activate' activation_key %}
 
 {% blocktrans with site_name=site.name %}
 Sincerely,

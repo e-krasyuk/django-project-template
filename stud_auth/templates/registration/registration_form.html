@@ -1,5 +1,7 @@
 {% extends "students/base.html" %}
 
+
+{% load crispy_forms_tags %}
 {% load i18n %}
 
 {% block meta_title %}{% trans "Register Form" %}{% endblock meta_title %}
@@ -14,6 +16,12 @@
 {% endblock %}
 
 {% block content %}
+
+
+{% crispy form %}
+
+{% comment %}
+
 	<form action="{% url 'registration_register' %} method="post" ">
 
 	{% csrf_token %}
@@ -45,6 +53,8 @@
 	<button type="submit" class="btn btn-primary">{% trans "Register" %}</button>
 	
 </form>
+
+{% endcomment %}
 
 {% endblock content %}
 	

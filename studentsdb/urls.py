@@ -20,11 +20,11 @@ urlpatterns = patterns('',
 	# Students urls
 	url(r'^$', 'students.views.students.students_list', name='home'),
 	#url(r'^students/add/$', 'students.views.students.students_add', name='students_add'),
-	url(r'^students/add/$', login_required(StudentCreateView.as_view()), name='students_add'),
+	url(r'^students/add/$', StudentCreateView.as_view(), name='students_add'),
 	#url(r'^students/(?P<sid>\d+)/edit/$', 'students.views.students.students_edit', name='students_edit'),
-	url(r'^students/(?P<pk>\d+)/edit/$', login_required(StudentUpdateView.as_view()), name='students_edit'),
+	url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
 	#url(r'^students/(?P<sid>\d+)/delete/$', 'students.views.students.students_delete', name='students_delete'),
-	url(r'^students/(?P<pk>\d+)/delete/$', login_required(StudentDeleteView.as_view()), name='students_delete'),
+	url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
 
 	#Group urls
 	url(r'^groups/$', login_required(groups_list), name='groups'),
@@ -64,12 +64,17 @@ urlpatterns = patterns('',
 	url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'},name='auth_logout'),
 	url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'),name='registration_complete'),
 	url(r'^activate/complete/$', TemplateView.as_view(template_name='registration/activation_complete.html'), name='registration_activation_complete'),
-	url(r'^accounts/', include('registration.backends.default.urls')),
+	url(r'^accounts/password_reset/$', auth_views.password_reset, name='auth_password_reset'),
+	url(r'^accounts/password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),
+    url(r'^accounts/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', auth_views.password_reset_confirm,
+        name='password_reset_confirm'),
+    url(r'^accounts/password_reset/complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
+	url(r'^accounts/', include('registration.backends.default.urls' , namespace='accounts')),
 	url(r'^accounts/', include('django.contrib.auth.urls')),
 
 	#Social Auth Related urls
 	url('^social/', include('social.apps.django_app.urls', namespace='social')),
-	)
+)
 
 if DEBUG:
 	#serve files from media folder

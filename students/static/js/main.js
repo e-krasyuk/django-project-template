@@ -79,6 +79,7 @@ function initEditStudentForm(form, modal) {
 	//attach datepicker
 	initDateFields();
 	initDateTimeFields();
+	initPhotoIcon();
 
 	//close modal window on Cancel button click
 	form.find('input[name="cancel_button"]').click(function(event) {
@@ -314,8 +315,9 @@ function navTabs() {
 	});
 }
 
-
-//sorting kist of students
+// Sorting doesn't work at all
+/*
+//sorting list of students
 function sortingWithAjax() {
     $(".new-content-sorting").click(function() {
         var url = $(this);  
@@ -344,6 +346,14 @@ function sortingWithAjax() {
     });
 }
 
+*/
+
+//Show phot icon in add and edit forms
+function initPhotoIcon() {
+	var imgUrl = $('#div_id_photo a').attr('href');
+	var imgHtml = '<img height="30" width="30" class=img-circle src=' + imgUrl + '/>'
+	$('#div_id_photo a').html(imgHtml);
+}
 
 
 $(document).ready(function() {
@@ -358,5 +368,5 @@ function initFunctions() {
 	initDateTimeFields();
 	initEditStudentPage();
 	initAddStudentPage();
-	sortingWithAjax();
+	//sortingWithAjax();
 }

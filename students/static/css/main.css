@@ -158,3 +158,10 @@ th.day-header {
 	margin-top: 30px;
 	text-align: right;
 }
+
+/* Log In via social networks */
+img.logicon {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}

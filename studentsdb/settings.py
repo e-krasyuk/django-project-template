@@ -2,7 +2,7 @@ from django.conf import global_settings
 
 from db import DATABASES
 
-from secret_passwords import gmail_account_pass, facebook_password, twitter_password
+from secret_passwords import gmail_account_pass, facebook_password, twitter_password, google_password
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 "django.core.context_processors.request",
@@ -34,8 +34,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'registration',
     'stud_auth',
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +50,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'studentsdb.middleware.RequestTimeMiddleware',
+    #'studentsdb.middleware.RequestTimeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -157,26 +157,32 @@ LOGGING = {
 REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 1
 
+REGISTRATION_FORM = 'stud_auth.forms.CustomRegForm'
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'students', 'templates', 'students'),
     )
 
 #redefine default login, logout forms 
-LOGIN_URL = 'users:auth_login'
+LOGIN_URL = 'accounts:auth_login'
 LOGOUT_URL = 'users:auth_logout'
 
-#Settings for Facebook logging
+#Settings for Social networks logging
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'social.backends.twitter.TwitterOAuth',
+    'social.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     )
 
-#Social keys
+#Social networks keys
 SOCIAL_AUTH_FACEBOOK_KEY = '330950913931053'
 SOCIAL_AUTH_FACEBOOK_SECRET = facebook_password
 
 SOCIAL_AUTH_TWITTER_KEY = 'ShKP4i3p7GLrCeq88uGVQN9n3'
 SOCIAL_AUTH_TWITTER_SECRET = twitter_password
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '639234605735-ccdilc0u2993hopef4hcfsntt3jcmjlt.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google_password
 
 COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'coverage')
