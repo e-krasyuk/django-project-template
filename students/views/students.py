@@ -41,6 +41,7 @@ def students_list(request):
 
 	#paginate students
 	context = paginate(students, 3, request, {}, var_name='students')
+
 	return render(request, 'students/students_list.html', context)
 
 
