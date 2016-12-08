@@ -75,7 +75,6 @@
 			<div class="col-xs-6" id="user-toolbar">
 				<a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img src="media/twitter_logicon.png" alt="twitter" class="logicon"></a> 
 				<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img src="media/fb_logicon.png" alt="facebook" class="logicon"></a> 
-				<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><img src="media/google_logicon.png" alt="google" class="logicon"></a> 
 				<br>
 				<a href="{% url 'accounts:auth_login' %}">{% trans 'Login' %}</a> |
 				<a href="{% url 'accounts:registration_register' %}">{% trans 'Register' %}</a>

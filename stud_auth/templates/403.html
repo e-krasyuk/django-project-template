@@ -1,0 +1,14 @@
+{% extends "students/base.html" %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block meta_title %}{% trans "Forbidden" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Access to the webpage was denied." %}{% endblock title %}
+
+{% block content %}
+
+<p>{% trans "You are not authorized to access this webpage. You may need to sign in." %}</p>
+
+{% endblock content %}

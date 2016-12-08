@@ -1,8 +1,17 @@
 from django.conf import global_settings
 
-from db import DATABASES
+from .env_settings import SECRET_KEY, DEBUG, TEMPLATE_DEBUG, ALLOWED_HOSTS
+from .env_settings import SOCIAL_AUTH_FACEBOOK_SECRET, SOCIAL_AUTH_FACEBOOK_KEY
+from .env_settings import DATABASES, STATIC_URL, MEDIA_URL, MEDIA_ROOT
+from .env_settings import ADMIN_EMAIL, EMAIL_HOST, EMAIL_PORT, EMAIL_USE_SSL
+from .env_settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS
+from .env_settings import PORTAL_URL
 
-from secret_passwords import gmail_account_pass, facebook_password, twitter_password, google_password
+# in dev envrironment we may not have STATIC_ROOT defined
+try:
+    from .env_settings import STATIC_ROOT
+except ImportError:
+    pass
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 "django.core.context_processors.request",
@@ -12,24 +21,9 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 "students.context_processors.groups_processor",
 )
 
-PORTAL_URL = 'http://localhost:8000'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ok%8p-6$&5f!)my!1i!c+9(uar-+d6nbe4yc*wa*g$g=j@5+*@'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -86,23 +80,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/static/'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
-
-#variables for sending email
-ADMIN_EMAIL = 'admin@studentsdb.com'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'evgeniykrasyuk@gmail.com' 
-EMAIL_HOST_PASSWORD = gmail_account_pass
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -171,18 +148,8 @@ LOGOUT_URL = 'users:auth_logout'
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'social.backends.twitter.TwitterOAuth',
-    'social.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     )
 
-#Social networks keys
-SOCIAL_AUTH_FACEBOOK_KEY = '330950913931053'
-SOCIAL_AUTH_FACEBOOK_SECRET = facebook_password
-
-SOCIAL_AUTH_TWITTER_KEY = 'ShKP4i3p7GLrCeq88uGVQN9n3'
-SOCIAL_AUTH_TWITTER_SECRET = twitter_password
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '639234605735-ccdilc0u2993hopef4hcfsntt3jcmjlt.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google_password
 
 COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'coverage')

@@ -1,0 +1,15 @@
+{% extends "students/base.html" %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block meta_title %}{% trans "Oops, not found" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Sorry, the page you tried cannot be found." %}{% endblock title %}
+
+
+{% block content %}
+
+<p>{% trans "You may have type the adress incorectly or you may have used an outdated link." %}</p>
+
+{% endblock content %}
