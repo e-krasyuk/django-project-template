@@ -65,7 +65,6 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 
 # We moved DATABASES variable to db.py module which added to .gitignore
 # so we don't keep mysql passwords in repository
-from .db import DATABASES
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

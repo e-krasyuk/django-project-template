@@ -45,7 +45,7 @@ class Student(models.Model):
 
 	student_group = models.ForeignKey('Group',
 		verbose_name=_(u'Group'),
-		blank=False,
+		blank=True,
 		null=True,
 		on_delete=models.PROTECT)
 
