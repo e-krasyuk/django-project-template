@@ -128,7 +128,7 @@ msgstr "Будь-ласка, виправте наступні помилки"
 #: templates/students/base.html:8 templates/students/base.html.py:28
 #: templates/students/base.html:131
 msgid "Students Accounting Service"
-msgstr "Сервіс Обліку Стулентів"
+msgstr "Сервіс Обліку Студентів"
 
 #: templates/students/base.html:10
 msgid "App to manage students database"

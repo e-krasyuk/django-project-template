@@ -11,9 +11,9 @@
 {% block title %}{% trans "Journal" %}{% endblock title %}
 
 {% block status_message %}
-	<div class="alert alert-danger" id="ajax-error">
-		<span id="ajax-error-text"></span>
-	</div>
+<div class="alert alert-danger" id="ajax-error">
+	<span id="ajax-error-text"></span>
+</div>
 {% endblock %} 
 
 {% block content %}
@@ -43,8 +43,9 @@
 	<a href="?month={{ next_month }}" title="Наступний Місяць">&rarr;</a>
 </p>
 
+<div class="table-responsive">
 <table class="table table-hover table-striped table-bordered"
-	id="students-journal">
+id="students-journal">
 
 <thead>
 	<tr class="header">
@@ -68,37 +69,38 @@
 	<tr>
 		<td>
 			{% if is_paginated %}
-				{{ page_obj.start_index|add:forloop.counter|add:"-1" }}
+			{{ page_obj.start_index|add:forloop.counter|add:"-1" }}
 			{% else %}
-				{{ forloop.counter }}
+			{{ forloop.counter }}
 			{% endif %}
 		</td>
 		
 		<td>
 			<a title="Редагувати" target="_blank"
-				href="{% url "students_edit" student.id %}" class="student-edit-form-link">
-				{{ student.fullname }}
-			</a>
-		</td>
+			href="{% url "students_edit" student.id %}" class="student-edit-form-link">
+			{{ student.fullname }}
+		</a>
+	</td>
 
-		{% for day in student.days %}
-		<td class="day-box">
-			<input type="checkbox" data-student-id="{{ student.id }}"
-				data-date="{{ day.date }}" data-url="{{ student.update_url }}"
-				value="1"{% if day.present %} checked="checked" {% endif %} />
-		</td>
-		{% endfor %}
-
-	</tr>
+	{% for day in student.days %}
+	<td class="day-box">
+		<input type="checkbox" data-student-id="{{ student.id }}"
+		data-date="{{ day.date }}" data-url="{{ student.update_url }}"
+		value="1"{% if day.present %} checked="checked" {% endif %} />
+	</td>
 	{% endfor %}
 
-	</tbody>
+</tr>
+{% endfor %}
+
+</tbody>
 </table>
+</div>
 
 {% endif %}
 
 {% with object_list=students %}
-  {% include "students/pagination.html" %}
+{% include "students/pagination.html" %}
 {% endwith %}
 
 {% endblock content %}

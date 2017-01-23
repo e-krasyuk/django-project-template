@@ -21,26 +21,26 @@
 	<thead>
 		<tr>
 			<th>
-			#
+				#
 			</th>
 			<th>{% trans "Photo" %}</th>
 			<th><a href="{% url 'home' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% endif %}" class="new-content-sorting">
-			{% trans "Last Name" %}
-			{% if order_by == 'last_name' and reverse != '1' %}&uarr;
-			{% elif order_by == 'last_name' and reverse == '1' %}&darr;
-			{% endif %}
+				{% trans "Last Name" %}
+				{% if order_by == 'last_name' and reverse != '1' %}&uarr;
+				{% elif order_by == 'last_name' and reverse == '1' %}&darr;
+				{% endif %}
 			</a></th>
 			<th><a href="{% url 'home' %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}" class="new-content-sorting">
-			{% trans "First Name" %}
-			{% if order_by == 'first_name' and reverse != '1' %}&uarr;
-			{% elif order_by == 'first_name' and reverse == '1' %}&darr;
-			{% endif %}
+				{% trans "First Name" %}
+				{% if order_by == 'first_name' and reverse != '1' %}&uarr;
+				{% elif order_by == 'first_name' and reverse == '1' %}&darr;
+				{% endif %}
 			</a></th>
 			<th><a href="{% url 'home' %}?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&amp;reverse=1{% endif %}" class="new-content-sorting">
-			{% trans "Ticket #" %}
-			{% if order_by == 'ticket' and reverse != '1' %}&uarr;
-			{% elif order_by == 'ticket' and reverse == '1' %}&darr;
-			{% endif %}
+				{% trans "Ticket #" %}
+				{% if order_by == 'ticket' and reverse != '1' %}&uarr;
+				{% elif order_by == 'ticket' and reverse == '1' %}&darr;
+				{% endif %}
 			</a></th>
 			{% if user.is_authenticated %}
 			<th>{% trans "Actions" %}</th>
@@ -54,17 +54,17 @@
 		<tr>
 			<td>
 				{% if is_paginated %}
-					{{ page_obj.start_index|add:forloop.counter|add:"-1" }}
+				{{ page_obj.start_index|add:forloop.counter|add:"-1" }}
 				{% else %}
-					{{ forloop.counter }}
+				{{ forloop.counter }}
 				{% endif %}
 			</td>
 			<td>
-			{% if student.photo %} <!-- If student have aphoto field - apply this src -->
-			<img height="30" width="30" src="{{ student.photo.url }}" class="img-circle">
-			{% else %}
-			<img src="{% static 'img/default_user.png' %}" class="img-circle" height="30" width="30">
-			{% endif %}
+				{% if student.photo %} <!-- If student have aphoto field - apply this src -->
+				<img height="30" width="30" src="{{ student.photo.url }}" class="img-circle">
+				{% else %}
+				<img src="{% static 'img/default_user.png' %}" class="img-circle" height="30" width="30">
+				{% endif %}
 			</td>
 			<td><a title="Edit" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.last_name }}</a></td>
 			<td><a title="Edit" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.first_name }}</a></td>
@@ -91,7 +91,7 @@
 			</td>
 			{% endif %}
 		</tr>
-	{% endfor %}
+		{% endfor %}
 
 	</tbody>
 </table>
@@ -107,9 +107,8 @@
 {% endblock content %}
 
 
-	
 
 
-	
-		
-		
+
+
+

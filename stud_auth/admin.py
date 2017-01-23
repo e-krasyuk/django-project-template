@@ -6,11 +6,12 @@ from .models import StProfile
 
 
 class StProfileInline(admin.StackedInline):
-	model = StProfile
+    model = StProfile
+
 
 class UserAdmin(auth_admin.UserAdmin):
-	inlines = (StProfileInline,)
+    inlines = (StProfileInline,)
 
-#replace existing User admin form
+# replace existing User admin form
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

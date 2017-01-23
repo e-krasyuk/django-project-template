@@ -14,11 +14,11 @@
 		{% endfor %}
 		<li>
 			<a href="?page={{ paginator.num_pages }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">
-&raquo;</a>
-		</li>
-	</ul>
-</nav>
+				&raquo;</a>
+			</li>
+		</ul>
+	</nav>
 
-{% endwith %}
+	{% endwith %}
 
-{% endif %}
+	{% endif %}

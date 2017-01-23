@@ -44,7 +44,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    #'studentsdb.middleware.RequestTimeMiddleware',
+    # 'studentsdb.middleware.RequestTimeMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,7 +82,7 @@ USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-#Logging
+# Logging
 LOG_FILE = os.path.join(BASE_DIR, 'studentsdb.log')
 
 LOGGING = {
@@ -107,7 +107,7 @@ LOGGING = {
             'formatter': 'verbose'
         },
         'file': {
-            'level':'INFO',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': LOG_FILE,
             'formatter': 'verbose'
@@ -131,24 +131,24 @@ LOGGING = {
 }
 
 REGISTRATION_OPEN = True
-ACCOUNT_ACTIVATION_DAYS = 1
+ACCOUNT_ACTIVATION_DAYS = 3
 
 REGISTRATION_FORM = 'stud_auth.forms.CustomRegForm'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'students', 'templates', 'students'),
-    )
+)
 
-#redefine default login, logout forms 
+# redefine default login, logout forms 
 LOGIN_URL = 'accounts:auth_login'
 LOGOUT_URL = 'users:auth_logout'
 
-#Settings for Social networks logging
+# Settings for Social networks logging
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
-    )
+)
 
 
 COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'coverage')

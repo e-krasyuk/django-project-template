@@ -15,7 +15,7 @@ class CustomRegForm(RegistrationForm):
         super(CustomRegForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
-        #self.helper.form_action = ''
+        # self.helper.form_action = ''
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
         self.helper.help_text_inline = True
@@ -28,4 +28,3 @@ class CustomRegForm(RegistrationForm):
                 HTML(u"<a class='btn btn-link' href='%s'>%s</a>" % (reverse('home'), _(u'Cancel'))),
             )
         )
-

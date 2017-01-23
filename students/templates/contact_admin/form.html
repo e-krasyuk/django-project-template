@@ -1,7 +1,7 @@
 {% extends "students/base.html" %}
 
 {% load i18n %}
-	
+
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
@@ -12,9 +12,9 @@
 {% block status_message %}
 
 {% if form.errors %}
-	<div class="alert alert-warning" role="alert">
-		{% trans "Please, correct next mistakes" %}
-	</div>
+<div class="alert alert-warning" role="alert">
+	{% trans "Please, correct next mistakes" %}
+</div>
 {% endif %}
 
 {{ block.super }}

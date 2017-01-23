@@ -12,11 +12,11 @@
 
 {% block status_message %}
 
-	{% if errors %}
-	<div class="alert alert-warning" role="alert">
-		{% trans "Please, correct next mistakes" %}
-	</div>
-	{% endif %}
+{% if errors %}
+<div class="alert alert-warning" role="alert">
+	{% trans "Please, correct next mistakes" %}
+</div>
+{% endif %}
 
 {% endblock status_message %}
 

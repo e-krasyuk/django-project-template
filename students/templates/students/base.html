@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<title>{% trans "Students Accounting Service" %} - {% block meta_title %}{% endblock meta_title %}</title>
 	<meta name="description"
-		  value="{% trans 'App to manage students database'%}">
+	value="{% trans 'App to manage students database'%}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/css/bootstrap-datetimepicker.min.css">
@@ -29,7 +29,7 @@
 			</div>
 
 			<!-- Language Select -->
-			<div class="col-xs-2" id="lang-select">
+			<div class="col-xs-3 col-xs-offset-3" id="lang-select">
 				<div class="lang-select-form">
 					<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
 						<input type="hidden" name="lang" value="uk">
@@ -51,20 +51,20 @@
 			{% if user.is_authenticated %}
 
 			<!-- Groups Selector -->
-			<div class="col-xs-4" id="group-selector">
+			<div class="col-xs-5 col-xs-offset-1" id="group-selector">
 				{% block group_menu %}
 				<strong>{% trans "Group:" %}</strong>
 				<select>
 					<option value="">{% trans "All Students" %}</option>
 					{% for group in GROUPS %}
-						<option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+					<option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
 					{% endfor %}
 				</select>
 				{% endblock group_menu %}
 			</div>
 
 			<!-- User's toolbar for authenticated user -->
-			<div class="col-xs-2" id="user-toolbar">
+			<div class="col-xs-4 col-xs-offset-7" id="user-toolbar">
 				<a href="{% url 'profile' %}">{{ user.get_full_name|default:user.username }}</a> |
 				<a href="{% url 'auth_logout' %}">{% trans 'Logout' %}</a>
 			</div>
@@ -73,8 +73,8 @@
 
 			<!-- User's toolbar for anonymous users -->
 			<div class="col-xs-6" id="user-toolbar">
-				<a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img src="media/twitter_logicon.png" alt="twitter" class="logicon"></a> 
-				<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img src="media/fb_logicon.png" alt="facebook" class="logicon"></a> 
+				<a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img src="{{ MEDIA_URL }}twitter_logicon.png" alt="twitter" class="logicon"></a> 
+				<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img src="{{ MEDIA_URL }}fb_logicon.png" alt="facebook" class="logicon"></a> 
 				<br>
 				<a href="{% url 'accounts:auth_login' %}">{% trans 'Login' %}</a> |
 				<a href="{% url 'accounts:registration_register' %}">{% trans 'Register' %}</a>
