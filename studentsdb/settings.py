@@ -1,15 +1,15 @@
 from django.conf import global_settings
 
-from .env_settings import SECRET_KEY, DEBUG, TEMPLATE_DEBUG, ALLOWED_HOSTS
-from .env_settings import SOCIAL_AUTH_FACEBOOK_SECRET, SOCIAL_AUTH_FACEBOOK_KEY
-from .env_settings import DATABASES, STATIC_URL, MEDIA_URL, MEDIA_ROOT
-from .env_settings import ADMIN_EMAIL, EMAIL_HOST, EMAIL_PORT, EMAIL_USE_SSL
-from .env_settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS
-from .env_settings import PORTAL_URL
+from .dev_env_settings import SECRET_KEY, DEBUG, TEMPLATE_DEBUG, ALLOWED_HOSTS
+from .dev_env_settings import SOCIAL_AUTH_FACEBOOK_SECRET, SOCIAL_AUTH_FACEBOOK_KEY
+from .dev_env_settings import DATABASES, STATIC_URL, MEDIA_URL, MEDIA_ROOT
+from .dev_env_settings import ADMIN_EMAIL, EMAIL_HOST, EMAIL_PORT, EMAIL_USE_SSL
+from .dev_env_settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS
+from .dev_env_settings import PORTAL_URL
 
 # in dev envrironment we may not have STATIC_ROOT defined
 try:
-    from .env_settings import STATIC_ROOT
+    from .dev_env_settings import STATIC_ROOT
 except ImportError:
     pass
 

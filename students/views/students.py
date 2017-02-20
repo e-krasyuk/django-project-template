@@ -98,10 +98,7 @@ class StudentCreateView(CreateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(StudentCreateView, self).dispatch(*args, **kwargs)
-
-
-# def students_edit(request, sid):
-    # return HttpResponse('<h1>Edit Student %s</h1>' % sid)
+        
 
 class StudentUpdateForm(ModelForm):
     class Meta:
@@ -160,9 +157,6 @@ class StudentUpdateView(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(StudentUpdateView, self).dispatch(*args, **kwargs)
-
-# def students_delete(request, sid):
-    # return HttpResponse('<h1>Delete Student %s</h1>' % sid)
 
 
 class StudentDeleteView(DeleteView):

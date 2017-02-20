@@ -166,8 +166,6 @@ function initEditStudentPage() {
 				return false;
 			}
 		});
-		//чтобы браузер не перешел по ссылке, 
-		//а только открылось модальное окно:
 		return false;
 	});
 }
@@ -315,38 +313,6 @@ function navTabs() {
 	});
 }
 
-// Sorting doesn't work at all
-/*
-//sorting list of students
-function sortingWithAjax() {
-    $(".new-content-sorting").click(function() {
-        var url = $(this);  
-        $.ajax({
-            'url': url.attr('href'),
-            'dataType': 'html',
-            'type': 'get',
-            'success': function(data, status, xhr){
-                // check if we got successfull response from the server
-                if (status != 'success') {
-                    alert(gettext('There was an error on server. Try again later.'));
-                    return false;
-                }
-                // update modal window with arrived content from the server
-                var table = $('.table'), newpage = $(data), newtable = newpage.find('.table');
-                table.html(newtable);
-                sortingWithAjax();
-            },
-
-            'error': function(){
-                alert(gettext('There was an error on server. Try again later.'));
-                return false;
-            }
-        });
-        return false;
-    });
-}
-
-*/
 
 //Show phot icon in add and edit forms
 function initPhotoIcon() {

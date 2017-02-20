@@ -33,27 +33,9 @@ def exams_list(request):
         if request.GET.get('reverse', '') == '1':
             exams = exams.reverse()
 
-    # paginate exams
-
-    # paginator = Paginator(exams, 2)
-    # page = request.GET.get('page')
-    # try:
-    #   exams = paginator.page(page)
-    # except PageNotAnInteger:
-        # If page not an integer, deliver first page
-    #   exams = paginator.page(1)
-    # except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-    #   exams = paginator.page(paginator.num_pages)
-
-    # return render(request, 'students/exams_list.html', 
-    #   {'exams': exams})
-
     context = paginate(exams, 3, request, {}, var_name='exams')
     return render(request, 'students/exams_list.html', context)
 
-# def exams_add(request):
-    # return HttpResponse('<h1>Exam Add Form</h1>')
 
 class ExamCreateForm(ModelForm):
     class Meta:
@@ -106,8 +88,6 @@ class ExamCreateView(CreateView):
     def dispatch(self, *args, **kwargs):
         return super(ExamCreateView, self).dispatch(*args, **kwargs)
 
-# def exams_edit(request, eid):
-    # return HttpResponse('<h1>Edit Exam %s</h1>' % eid)
 
 class ExamUpdateForm(ModelForm):
     class Meta:
@@ -156,8 +136,6 @@ class ExamUpdateView(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(ExamUpdateView, self).dispatch(*args, **kwargs)
 
-# def exams_delete(request, eid):
-    # return HttpResponse('<h1>Delete Exam %s</h1>' % eid)
 
 class ExamDeleteView(DeleteView):
     model = Exam
